@@ -4,6 +4,7 @@ Changelog for package pilz_industrial_motion_testutils
 
 Forthcoming
 -----------
+* Generalize integration_test_utils.py to break cyclic dependency
 * Contributors: Pilz GmbH and Co. KG
 
 0.4.11 (2020-07-16)
