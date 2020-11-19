@@ -26,7 +26,8 @@
 namespace pilz_testutils
 {
 /**
- * @brief Mock for a ros::ServiceClient, calls are passed through to a given callback (which can be a mock method).
+ * @brief Mock for a ros::ServiceClient, calls are passed through to a given
+ * callback (which can be a mock method).
  *
  * @tparam S service type
  */
@@ -37,7 +38,8 @@ public:
   typedef std::function<bool(const std::string&, S&)> CallFunction;
   typedef std::function<bool(const std::string&)> LogicalOperatorFunction;
 
-  ServiceClientMock(const std::string& name, const CallFunction& call_callback,
+  ServiceClientMock(const std::string& name,
+                    const CallFunction& call_callback,
                     const LogicalOperatorFunction& negation_operator_callback)
     : name_(name), call_callback_(call_callback), negation_operator_callback_(negation_operator_callback)
   {
@@ -75,7 +77,8 @@ class ServiceClientMockFactory
 {
 public:
   /**
-   * @brief Returns a ServiceClientMock, which passes service calls to a (named) mock method.
+   * @brief Returns a ServiceClientMock, which passes service calls to a (named)
+   * mock method.
    *
    * Expectations on service calls can be made as follows:
    * @code
@@ -89,7 +92,8 @@ public:
   {
     using std::placeholders::_1;
     using std::placeholders::_2;
-    return ServiceClientMock<S>(name, std::bind(&ServiceClientMockFactory::call_named, this, _1, _2),
+    return ServiceClientMock<S>(name,
+                                std::bind(&ServiceClientMockFactory::call_named, this, _1, _2),
                                 std::bind(&ServiceClientMockFactory::handle_invalid_named, this, _1));
   }
 

@@ -21,15 +21,14 @@
 
 namespace pilz_industrial_motion_testutils
 {
-
 /**
  * @brief Visitor transforming the stored command into a MotionPlanRequest.
  */
 class ToReqVisitor : public boost::static_visitor<planning_interface::MotionPlanRequest>
 {
 public:
-  template<typename T>
-  planning_interface::MotionPlanRequest operator()( T & cmd) const
+  template <typename T>
+  planning_interface::MotionPlanRequest operator()(T& cmd) const
   {
     return cmd.toRequest();
   }
@@ -38,11 +37,11 @@ public:
 /**
  * @brief Visitor returning not the specific command type but the base type.
  */
-class ToBaseVisitor : public boost::static_visitor<MotionCmd& >
+class ToBaseVisitor : public boost::static_visitor<MotionCmd&>
 {
 public:
-  template<typename T>
-  MotionCmd& operator()( T & cmd) const
+  template <typename T>
+  MotionCmd& operator()(T& cmd) const
   {
     return cmd;
   }
@@ -56,9 +55,9 @@ pilz_msgs::MotionSequenceRequest Sequence::toRequest() const
   for (const auto& cmd : cmds_)
   {
     pilz_msgs::MotionSequenceItem item;
-    item.req = boost::apply_visitor( ToReqVisitor(), cmd.first);
+    item.req = boost::apply_visitor(ToReqVisitor(), cmd.first);
 
-    if ( std::find(group_names.begin(), group_names.end(), item.req.group_name) != group_names.end() )
+    if (std::find(group_names.begin(), group_names.end(), item.req.group_name) != group_names.end())
     {
       // Remove start state because only the first request of a group
       // is allowed to have a start state in a sequence.
@@ -77,7 +76,7 @@ pilz_msgs::MotionSequenceRequest Sequence::toRequest() const
 
 void Sequence::erase(const size_t start, const size_t end)
 {
-  const size_t orig_n {size()};
+  const size_t orig_n{ size() };
   if (start > orig_n || end > orig_n)
   {
     std::string msg;
@@ -87,17 +86,17 @@ void Sequence::erase(const size_t start, const size_t end)
     msg.append(std::to_string(size()));
     throw std::invalid_argument(msg);
   }
-  cmds_.erase(cmds_.begin()+start, cmds_.begin()+end);
+  cmds_.erase(cmds_.begin() + start, cmds_.begin() + end);
   if (end == orig_n)
   {
     // Make sure last radius is set zero
-    cmds_.at(size()-1).second = 0.;
+    cmds_.at(size() - 1).second = 0.;
   }
 }
 
 MotionCmd& Sequence::getCmd(const size_t index_cmd)
 {
-  return boost::apply_visitor( ToBaseVisitor(), cmds_.at(index_cmd).first);
+  return boost::apply_visitor(ToBaseVisitor(), cmds_.at(index_cmd).first);
 }
 
-} // namespace pilz_industrial_motion_testutils
+}  // namespace pilz_industrial_motion_testutils

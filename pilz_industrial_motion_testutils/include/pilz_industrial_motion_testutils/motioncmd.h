@@ -24,20 +24,18 @@
 
 namespace pilz_industrial_motion_testutils
 {
-
 /**
  * @brief Base class for commands storing all general information of a command.
  */
 class MotionCmd : public MotionPlanRequestConvertible
 {
 public:
-  MotionCmd()
-    : MotionPlanRequestConvertible()
+  MotionCmd() : MotionPlanRequestConvertible()
   {
   }
 
 public:
-  void setPlanningGroup(const std::string &planning_group);
+  void setPlanningGroup(const std::string& planning_group);
   const std::string& getPlanningGroup() const;
 
   void setVelocityScale(double velocity_scale);
@@ -47,11 +45,11 @@ protected:
   std::string planning_group_;
   //! Link to which all cartesian poses refer to.
   std::string target_link_;
-  double vel_scale_ {1.0};
-  double acc_scale_ {1.0};
+  double vel_scale_{ 1.0 };
+  double acc_scale_{ 1.0 };
 };
 
-inline void MotionCmd::setPlanningGroup(const std::string &planning_group)
+inline void MotionCmd::setPlanningGroup(const std::string& planning_group)
 {
   planning_group_ = planning_group;
 }
@@ -73,6 +71,6 @@ inline void MotionCmd::setAccelerationScale(double acceleration_scale)
 
 using MotionCmdUPtr = std::unique_ptr<MotionCmd>;
 
-}
+}  // namespace pilz_industrial_motion_testutils
 
-#endif // MOTIONCMD_H
+#endif  // MOTIONCMD_H

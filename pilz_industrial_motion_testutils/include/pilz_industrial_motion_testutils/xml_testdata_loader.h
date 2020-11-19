@@ -30,7 +30,6 @@
 namespace pt = boost::property_tree;
 namespace pilz_industrial_motion_testutils
 {
-
 /**
  * @brief Implements a test data loader which uses a xml file
  * to store the test data.
@@ -103,17 +102,14 @@ namespace pilz_industrial_motion_testutils
 class XmlTestdataLoader : public TestdataLoader
 {
 public:
-  XmlTestdataLoader(const std::string &path_filename);
-  XmlTestdataLoader(const std::string &path_filename,
-                    const moveit::core::RobotModelConstPtr& robot_model);
+  XmlTestdataLoader(const std::string& path_filename);
+  XmlTestdataLoader(const std::string& path_filename, const moveit::core::RobotModelConstPtr& robot_model);
   ~XmlTestdataLoader();
 
 public:
-  virtual JointConfiguration getJoints(const std::string &pos_name,
-                                       const std::string &group_name) const override;
+  virtual JointConfiguration getJoints(const std::string& pos_name, const std::string& group_name) const override;
 
-  virtual CartesianConfiguration getPose(const std::string &pos_name,
-                                         const std::string &group_name) const override;
+  virtual CartesianConfiguration getPose(const std::string& pos_name, const std::string& group_name) const override;
 
   virtual PtpJoint getPtpJoint(const std::string& cmd_name) const override;
   virtual PtpCart getPtpCart(const std::string& cmd_name) const override;
@@ -123,14 +119,14 @@ public:
   virtual LinCart getLinCart(const std::string& cmd_name) const override;
   virtual LinJointCart getLinJointCart(const std::string& cmd_name) const override;
 
-  virtual CircCenterCart getCircCartCenterCart(const std::string &cmd_name) const override;
-  virtual CircInterimCart getCircCartInterimCart(const std::string &cmd_name) const override;
-  virtual CircJointCenterCart getCircJointCenterCart(const std::string &cmd_name) const override;
-  virtual CircJointInterimCart getCircJointInterimCart(const std::string &cmd_name) const override;
+  virtual CircCenterCart getCircCartCenterCart(const std::string& cmd_name) const override;
+  virtual CircInterimCart getCircCartInterimCart(const std::string& cmd_name) const override;
+  virtual CircJointCenterCart getCircJointCenterCart(const std::string& cmd_name) const override;
+  virtual CircJointInterimCart getCircJointInterimCart(const std::string& cmd_name) const override;
 
-  virtual Sequence getSequence(const std::string &cmd_name) const override;
+  virtual Sequence getSequence(const std::string& cmd_name) const override;
 
-  virtual Gripper getGripper(const std::string &cmd_name) const override;
+  virtual Gripper getGripper(const std::string& cmd_name) const override;
 
 private:
   /**
@@ -140,33 +136,30 @@ private:
    * @param tree Tree containing the node.
    * @param name Name of node to look for.
    */
-  const pt::ptree::value_type &findNodeWithName(const boost::property_tree::ptree &tree,
-                                                const std::string &name,
-                                                const std::string &key,
-                                                const std::string &path = "") const;
+  const pt::ptree::value_type& findNodeWithName(const boost::property_tree::ptree& tree,
+                                                const std::string& name,
+                                                const std::string& key,
+                                                const std::string& path = "") const;
 
   /**
    * @brief Use this function to search for a cmd-node with a given name.
    */
-  const pt::ptree::value_type &findCmd(const std::string &cmd_name,
+  const pt::ptree::value_type& findCmd(const std::string& cmd_name,
                                        const std::string& cmd_path,
-                                       const std::string &cmd_key) const;
+                                       const std::string& cmd_key) const;
 
-  CartesianCenter getCartesianCenter(const std::string &cmd_name,
-                                     const std::string &planning_group) const;
+  CartesianCenter getCartesianCenter(const std::string& cmd_name, const std::string& planning_group) const;
 
-  CartesianInterim getCartesianInterim(const std::string &cmd_name,
-                                       const std::string &planning_group) const;
+  CartesianInterim getCartesianInterim(const std::string& cmd_name, const std::string& planning_group) const;
 
 private:
-  JointConfiguration getJoints(const boost::property_tree::ptree& joints_tree,
-                               const std::string &group_name) const;
+  JointConfiguration getJoints(const boost::property_tree::ptree& joints_tree, const std::string& group_name) const;
 
 private:
   /**
    * @brief Converts string vector to double vector.
    */
-  inline static std::vector<double> strVec2doubleVec(std::vector<std::string> &strVec);
+  inline static std::vector<double> strVec2doubleVec(std::vector<std::string>& strVec);
 
 public:
   /**
@@ -183,7 +176,7 @@ public:
 
 private:
   std::string path_filename_;
-  pt::ptree tree_ {};
+  pt::ptree tree_{};
 
   using AbstractCmdGetterUPtr = std::unique_ptr<AbstractCmdGetterAdapter>;
 
@@ -195,25 +188,22 @@ private:
   std::map<std::string, AbstractCmdGetterUPtr> cmd_getter_funcs_;
 
 private:
-  const pt::ptree::value_type empty_value_type_ {};
-  const pt::ptree empty_tree_ {};
+  const pt::ptree::value_type empty_value_type_{};
+  const pt::ptree empty_tree_{};
 };
 
-std::vector<double> XmlTestdataLoader::strVec2doubleVec(std::vector<std::string> &strVec)
+std::vector<double> XmlTestdataLoader::strVec2doubleVec(std::vector<std::string>& strVec)
 {
   std::vector<double> vec;
 
   vec.resize(strVec.size());
-  std::transform(strVec.begin(), strVec.end(), vec.begin(), [](const std::string& val)
-  {
-    return std::stod(val);
-  });
+  std::transform(strVec.begin(), strVec.end(), vec.begin(), [](const std::string& val) { return std::stod(val); });
 
   return vec;
 }
 
 using XmlTestDataLoaderUPtr = std::unique_ptr<TestdataLoader>;
 
-}
+}  // namespace pilz_industrial_motion_testutils
 
-#endif // XML_TESTDATA_LOADER_H
+#endif  // XML_TESTDATA_LOADER_H

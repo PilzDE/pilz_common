@@ -19,8 +19,8 @@
 
 #include <string>
 
-#include <ros/ros.h>
 #include <ros/duration.h>
+#include <ros/ros.h>
 
 #include <pilz_utils/wait_for_timeouts.h>
 
@@ -29,7 +29,8 @@ namespace pilz_utils
 /**
  * @brief Waits until the specified service starts.
  */
-static inline void waitForService(const std::string service_name, const double retry_timeout = DEFAULT_RETRY_TIMEOUT,
+static inline void waitForService(const std::string service_name,
+                                  const double retry_timeout = DEFAULT_RETRY_TIMEOUT,
                                   const double msg_output_period = DEFAULT_MSG_OUTPUT_PERIOD)
 {
   while (!ros::service::waitForService(service_name, ros::Duration(retry_timeout)) && ros::ok())

@@ -24,7 +24,6 @@
 
 namespace pilz_industrial_motion_testutils
 {
-
 /**
  * @brief Data class storing all information regarding a Circ command.
  */
@@ -32,9 +31,9 @@ template <class StartType, class AuxiliaryType, class GoalType>
 class Circ : public BaseCmd<StartType, GoalType>
 {
 public:
-  Circ()
-    : BaseCmd<StartType, GoalType>()
-  {}
+  Circ() : BaseCmd<StartType, GoalType>()
+  {
+  }
 
 public:
   void setAuxiliaryConfiguration(AuxiliaryType auxiliary);
@@ -49,7 +48,6 @@ private:
 
 private:
   AuxiliaryType auxiliary_;
-
 };
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -68,7 +66,7 @@ inline std::string Circ<StartType, AuxiliaryType, GoalType>::getPlannerId() cons
 template <class StartType, class AuxiliaryType, class GoalType>
 inline planning_interface::MotionPlanRequest Circ<StartType, AuxiliaryType, GoalType>::toRequest() const
 {
-  planning_interface::MotionPlanRequest req {BaseCmd<StartType, GoalType>::toRequest()};
+  planning_interface::MotionPlanRequest req{ BaseCmd<StartType, GoalType>::toRequest() };
   req.path_constraints = auxiliary_.toPathConstraints();
 
   return req;
@@ -86,6 +84,6 @@ inline const AuxiliaryType& Circ<StartType, AuxiliaryType, GoalType>::getAuxilia
   return auxiliary_;
 }
 
-}
+}  // namespace pilz_industrial_motion_testutils
 
-#endif // CIRC_H
+#endif  // CIRC_H

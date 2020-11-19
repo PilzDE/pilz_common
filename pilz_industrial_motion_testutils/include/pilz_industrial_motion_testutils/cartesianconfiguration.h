@@ -35,7 +35,6 @@
 
 namespace pilz_industrial_motion_testutils
 {
-
 /**
  * @brief Class to define a robot configuration in space
  * with the help of cartesian coordinates.
@@ -62,8 +61,8 @@ public:
   const std::string& getLinkName() const;
 
   void setPose(const geometry_msgs::Pose& pose);
-  const geometry_msgs::Pose &getPose() const;
-  geometry_msgs::Pose &getPose();
+  const geometry_msgs::Pose& getPose() const;
+  geometry_msgs::Pose& getPose();
 
   void setSeed(const JointConfiguration& config);
   const JointConfiguration& getSeed() const;
@@ -86,15 +85,14 @@ private:
 
   //! @brief The dimensions of the sphere associated with the target region
   //! of the position constraint.
-  boost::optional<double> tolerance_pose_ {boost::none};
+  boost::optional<double> tolerance_pose_{ boost::none };
 
   //! @brief The value to assign to the absolute tolerances of the
   //! orientation constraint.
-  boost::optional<double> tolerance_angle_ {boost::none};
+  boost::optional<double> tolerance_angle_{ boost::none };
 
   //! @brief The seed for computing the IK solution of the cartesian configuration.
-  boost::optional<JointConfiguration> seed_ {boost::none};
-
+  boost::optional<JointConfiguration> seed_{ boost::none };
 };
 
 std::ostream& operator<<(std::ostream&, const CartesianConfiguration&);
@@ -119,7 +117,7 @@ inline const geometry_msgs::Pose& CartesianConfiguration::getPose() const
   return pose_;
 }
 
-inline geometry_msgs::Pose & CartesianConfiguration::getPose()
+inline geometry_msgs::Pose& CartesianConfiguration::getPose()
 {
   return pose_;
 }
@@ -132,8 +130,8 @@ inline moveit_msgs::Constraints CartesianConfiguration::toGoalConstraints() cons
   }
   else
   {
-    return kinematic_constraints::constructGoalConstraints(link_name_, toStampedPose(pose_),
-                                                           tolerance_pose_.value(), tolerance_angle_.value());
+    return kinematic_constraints::constructGoalConstraints(
+        link_name_, toStampedPose(pose_), tolerance_pose_.value(), tolerance_angle_.value());
   }
 }
 
@@ -172,6 +170,6 @@ inline const boost::optional<double> CartesianConfiguration::getAngleTolerance()
   return tolerance_angle_;
 }
 
-}
+}  // namespace pilz_industrial_motion_testutils
 
-#endif // CARTESIANCONFIGURATION_H
+#endif  // CARTESIANCONFIGURATION_H

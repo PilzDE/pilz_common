@@ -23,12 +23,11 @@
 
 namespace pilz_industrial_motion_testutils
 {
-
 /**
  * @brief Base class to define an auxiliary point needed to specify
  * circ commands.
  */
-template<class ConfigType, class BuilderType>
+template <class ConfigType, class BuilderType>
 class CircAuxiliary
 {
 public:
@@ -44,35 +43,32 @@ private:
 
 protected:
   ConfigType auxiliary_config_;
-
 };
 
-template<class ConfigType, class BuilderType>
+template <class ConfigType, class BuilderType>
 void CircAuxiliary<ConfigType, BuilderType>::setConfiguration(const ConfigType& auxiliary_config)
 {
   auxiliary_config_ = auxiliary_config;
 }
 
-template<class ConfigType, class BuilderType>
+template <class ConfigType, class BuilderType>
 inline ConfigType& CircAuxiliary<ConfigType, BuilderType>::getConfiguration()
 {
   return auxiliary_config_;
 }
 
-template<class ConfigType, class BuilderType>
+template <class ConfigType, class BuilderType>
 inline const ConfigType& CircAuxiliary<ConfigType, BuilderType>::getConfiguration() const
 {
   return auxiliary_config_;
 }
 
-template<class ConfigType, class BuilderType>
+template <class ConfigType, class BuilderType>
 inline moveit_msgs::Constraints CircAuxiliary<ConfigType, BuilderType>::toPathConstraints() const
 {
-  return BuilderType().setConstraintName(getConstraintName())
-      .setConfiguration(getConfiguration())
-      .toPathConstraints();
+  return BuilderType().setConstraintName(getConstraintName()).setConfiguration(getConfiguration()).toPathConstraints();
 }
 
-}
+}  // namespace pilz_industrial_motion_testutils
 
-#endif // CIRCAUXILIARY_H
+#endif  // CIRCAUXILIARY_H

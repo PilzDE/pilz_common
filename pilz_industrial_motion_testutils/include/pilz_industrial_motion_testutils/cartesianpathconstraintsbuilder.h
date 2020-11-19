@@ -25,7 +25,6 @@
 
 namespace pilz_industrial_motion_testutils
 {
-
 /**
  * @brief Helper class to build moveit_msgs::Constraints from a
  * given configuration.
@@ -43,13 +42,15 @@ private:
   CartesianConfiguration configuration_;
 };
 
-inline CartesianPathConstraintsBuilder& CartesianPathConstraintsBuilder::setConstraintName(const std::string& constraint_name)
+inline CartesianPathConstraintsBuilder&
+CartesianPathConstraintsBuilder::setConstraintName(const std::string& constraint_name)
 {
   constraint_name_ = constraint_name;
   return *this;
 }
 
-inline CartesianPathConstraintsBuilder& CartesianPathConstraintsBuilder::setConfiguration(const CartesianConfiguration& configuration)
+inline CartesianPathConstraintsBuilder&
+CartesianPathConstraintsBuilder::setConfiguration(const CartesianConfiguration& configuration)
 {
   configuration_ = configuration;
   return *this;
@@ -67,6 +68,6 @@ inline moveit_msgs::Constraints CartesianPathConstraintsBuilder::toPathConstrain
   return path_constraints;
 }
 
-}
+}  // namespace pilz_industrial_motion_testutils
 
-#endif // CARTESIANPATHCONSTRAINTSBUILDER_H
+#endif  // CARTESIANPATHCONSTRAINTSBUILDER_H

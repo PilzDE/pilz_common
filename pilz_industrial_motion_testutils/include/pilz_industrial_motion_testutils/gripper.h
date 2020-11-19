@@ -22,12 +22,10 @@
 
 namespace pilz_industrial_motion_testutils
 {
-
 class Gripper : public Ptp<JointConfiguration, JointConfiguration>
 {
-
 };
 
-}
+}  // namespace pilz_industrial_motion_testutils
 
-#endif // GRIPPER_H
+#endif  // GRIPPER_H

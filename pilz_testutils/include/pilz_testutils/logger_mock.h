@@ -76,8 +76,10 @@ public:
 private:
   log4cxx::LoggerPtr ros_root_logger_;
   // Note:
-  // The ROS root logger takes control over the life time management of the LoggerMock!
-  // We only keep a pointer to allow tests make use of the mocked functions of the LoggerMock.
+  // The ROS root logger takes control over the life time management of the
+  // LoggerMock!
+  // We only keep a pointer to allow tests make use of the mocked functions of
+  // the LoggerMock.
   MockAppender* mock_appender_{ new MockAppender() };
 };
 
