@@ -29,7 +29,6 @@
 
 namespace pilz_industrial_motion_testutils
 {
-
 /**
  * @brief Abstract base class describing the interface to access
  * test data like robot poses and robot commands.
@@ -39,20 +38,18 @@ class TestdataLoader
 public:
   TestdataLoader() = default;
 
-  TestdataLoader(moveit::core::RobotModelConstPtr robot_model)
-    : robot_model_(robot_model)
-  {}
+  TestdataLoader(moveit::core::RobotModelConstPtr robot_model) : robot_model_(robot_model)
+  {
+  }
 
   virtual ~TestdataLoader() = default;
 
 public:
   void setRobotModel(moveit::core::RobotModelConstPtr robot_model);
 
-  virtual JointConfiguration getJoints(const std::string &pos_name,
-                                       const std::string &group_name) const = 0;
+  virtual JointConfiguration getJoints(const std::string& pos_name, const std::string& group_name) const = 0;
 
-  virtual CartesianConfiguration getPose(const std::string &pos_name,
-                                         const std::string &group_name) const = 0;
+  virtual CartesianConfiguration getPose(const std::string& pos_name, const std::string& group_name) const = 0;
 
   /**
    * @brief Returns the command with the specified name from the test data.
@@ -71,20 +68,20 @@ public:
   /**
    * @brief Returns the command with the specified name from the test data.
    */
-  virtual CircCenterCart getCircCartCenterCart(const std::string &cmd_name) const = 0;
-  virtual CircJointCenterCart getCircJointCenterCart(const std::string &cmd_name) const = 0;
-  virtual CircInterimCart getCircCartInterimCart(const std::string &cmd_name) const = 0;
-  virtual CircJointInterimCart getCircJointInterimCart(const std::string &cmd_name) const = 0;
+  virtual CircCenterCart getCircCartCenterCart(const std::string& cmd_name) const = 0;
+  virtual CircJointCenterCart getCircJointCenterCart(const std::string& cmd_name) const = 0;
+  virtual CircInterimCart getCircCartInterimCart(const std::string& cmd_name) const = 0;
+  virtual CircJointInterimCart getCircJointInterimCart(const std::string& cmd_name) const = 0;
 
   /**
    * @brief Returns the command with the specified name from the test data.
    */
-  virtual Sequence getSequence(const std::string &cmd_name) const = 0;
+  virtual Sequence getSequence(const std::string& cmd_name) const = 0;
 
   /**
    * @brief Returns the command with the specified name from the test data.
    */
-  virtual Gripper getGripper(const std::string &cmd_name) const = 0;
+  virtual Gripper getGripper(const std::string& cmd_name) const = 0;
 
 protected:
   moveit::core::RobotModelConstPtr robot_model_;
@@ -97,6 +94,6 @@ inline void TestdataLoader::setRobotModel(moveit::core::RobotModelConstPtr robot
 
 using TestdataLoaderUPtr = std::unique_ptr<TestdataLoader>;
 
-}
+}  // namespace pilz_industrial_motion_testutils
 
-#endif // TESTDATA_LOADER_H
+#endif  // TESTDATA_LOADER_H

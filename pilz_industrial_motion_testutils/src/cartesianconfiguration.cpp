@@ -20,37 +20,33 @@
 
 namespace pilz_industrial_motion_testutils
 {
-
-CartesianConfiguration::CartesianConfiguration()
-  : RobotConfiguration()
-{}
+CartesianConfiguration::CartesianConfiguration() : RobotConfiguration()
+{
+}
 
 CartesianConfiguration::CartesianConfiguration(const std::string& group_name,
-                                               const std::string &link_name,
+                                               const std::string& link_name,
                                                const std::vector<double>& config)
-  : RobotConfiguration(group_name)
-  , link_name_(link_name)
-  , pose_(toPose(config))
-{}
+  : RobotConfiguration(group_name), link_name_(link_name), pose_(toPose(config))
+{
+}
 
 CartesianConfiguration::CartesianConfiguration(const std::string& group_name,
                                                const std::string& link_name,
                                                const std::vector<double>& config,
                                                const moveit::core::RobotModelConstPtr& robot_model)
-  : RobotConfiguration(group_name, robot_model)
-  , link_name_(link_name)
-  , pose_(toPose(config))
+  : RobotConfiguration(group_name, robot_model), link_name_(link_name), pose_(toPose(config))
 {
   if (robot_model && (!robot_model_->hasLinkModel(link_name_)))
   {
-    std::string msg {"Link \""};
+    std::string msg{ "Link \"" };
     msg.append(link_name).append("\" not known to robot model");
     throw std::invalid_argument(msg);
   }
 
   if (robot_model && (!robot_state::RobotState(robot_model_).knowsFrameTransform(link_name_)))
   {
-    std::string msg {"Tranform of \""};
+    std::string msg{ "Tranform of \"" };
     msg.append(link_name).append("\" is unknown");
     throw std::invalid_argument(msg);
   }
@@ -86,18 +82,20 @@ moveit_msgs::RobotState CartesianConfiguration::toMoveitMsgsRobotState() const
 
   robot_state::RobotState rstate(robot_model_);
   rstate.setToDefaultValues();
-  if (hasSeed()){ rstate.setJointGroupPositions(group_name_, getSeed().getJoints()); }
+  if (hasSeed())
+  {
+    rstate.setJointGroupPositions(group_name_, getSeed().getJoints());
+  }
 
   rstate.update();
 
   // set to Cartesian pose
   Eigen::Isometry3d start_pose;
   tf::poseMsgToEigen(pose_, start_pose);
-  if(!rstate.setFromIK(rstate.getRobotModel()->getJointModelGroup(group_name_), start_pose, link_name_))
+  if (!rstate.setFromIK(rstate.getRobotModel()->getJointModelGroup(group_name_), start_pose, link_name_))
   {
     std::ostringstream os;
-    os << "No solution for ik \n" << start_pose.translation() << "\n"
-       << start_pose.linear();
+    os << "No solution for ik \n" << start_pose.translation() << "\n" << start_pose.linear();
     throw std::runtime_error(os.str());
   }
 
@@ -107,7 +105,7 @@ moveit_msgs::RobotState CartesianConfiguration::toMoveitMsgsRobotState() const
   return robot_state_msg;
 }
 
-std::ostream& operator<< (std::ostream& os, const CartesianConfiguration& obj)
+std::ostream& operator<<(std::ostream& os, const CartesianConfiguration& obj)
 {
   os << "Group name: \"" << obj.getGroupName() << "\"";
   os << " | link name: \"" << obj.getLinkName() << "\"";
@@ -115,4 +113,4 @@ std::ostream& operator<< (std::ostream& os, const CartesianConfiguration& obj)
   return os;
 }
 
-} // namespace pilz_industrial_motion_testutils
+}  // namespace pilz_industrial_motion_testutils

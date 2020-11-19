@@ -21,25 +21,23 @@
 
 namespace pilz_industrial_motion_testutils
 {
-
 /**
  * @brief Class to define a point on the circle on which the robot is supposed
  * to move via circ command.
  */
-template<class ConfigType, class BuilderType>
+template <class ConfigType, class BuilderType>
 class Interim : public CircAuxiliary<ConfigType, BuilderType>
 {
 private:
   virtual std::string getConstraintName() const override;
-
 };
 
-template<class ConfigType, class BuilderType>
+template <class ConfigType, class BuilderType>
 std::string Interim<ConfigType, BuilderType>::getConstraintName() const
 {
   return "interim";
 }
 
-}
+}  // namespace pilz_industrial_motion_testutils
 
-#endif // INTERIMAXILIARY_H
+#endif  // INTERIMAXILIARY_H

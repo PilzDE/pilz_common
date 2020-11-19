@@ -22,7 +22,6 @@
 
 namespace pilz_industrial_motion_testutils
 {
-
 /**
  * @brief Interface class to express that a derived class can be converted
  * into a planning_interface::MotionPlanRequest.
@@ -33,6 +32,6 @@ public:
   virtual planning_interface::MotionPlanRequest toRequest() const = 0;
 };
 
-}
+}  // namespace pilz_industrial_motion_testutils
 
-#endif // MOTIONPLANREQUESTCONVERTIBLE_H
+#endif  // MOTIONPLANREQUESTCONVERTIBLE_H

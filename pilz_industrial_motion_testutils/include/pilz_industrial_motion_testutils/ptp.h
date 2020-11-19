@@ -23,7 +23,6 @@
 
 namespace pilz_industrial_motion_testutils
 {
-
 /**
  * @brief Data class storing all information regarding a Ptp command.
  */
@@ -31,9 +30,9 @@ template <class StartType, class GoalType>
 class Ptp : public BaseCmd<StartType, GoalType>
 {
 public:
-  Ptp()
-    : BaseCmd<StartType, GoalType>()
-  {}
+  Ptp() : BaseCmd<StartType, GoalType>()
+  {
+  }
 
 private:
   virtual std::string getPlannerId() const override;
@@ -46,6 +45,6 @@ inline std::string Ptp<StartType, GoalType>::getPlannerId() const
   return "PTP";
 }
 
-}
+}  // namespace pilz_industrial_motion_testutils
 
-#endif // PTP_H
+#endif  // PTP_H

@@ -23,14 +23,13 @@
 
 namespace pilz_industrial_motion_testutils
 {
-
 template <class StartType, class GoalType>
 class BaseCmd : public MotionCmd
 {
 public:
-  BaseCmd()
-    : MotionCmd()
-  {}
+  BaseCmd() : MotionCmd()
+  {
+  }
 
   virtual ~BaseCmd() = default;
 
@@ -52,7 +51,6 @@ private:
 protected:
   GoalType goal_;
   StartType start_;
-
 };
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -108,6 +106,6 @@ planning_interface::MotionPlanRequest BaseCmd<StartType, GoalType>::toRequest() 
   return req;
 }
 
-}
+}  // namespace pilz_industrial_motion_testutils
 
-#endif // BASECMD_H
+#endif  // BASECMD_H

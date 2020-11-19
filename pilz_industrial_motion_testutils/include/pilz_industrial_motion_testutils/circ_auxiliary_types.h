@@ -24,10 +24,9 @@
 
 namespace pilz_industrial_motion_testutils
 {
-
 using CartesianCenter = Center<CartesianConfiguration, CartesianPathConstraintsBuilder>;
 using CartesianInterim = Interim<CartesianConfiguration, CartesianPathConstraintsBuilder>;
 
-}
+}  // namespace pilz_industrial_motion_testutils
 
-#endif // CIRC_AUXILIARY_TYPES_H
+#endif  // CIRC_AUXILIARY_TYPES_H
