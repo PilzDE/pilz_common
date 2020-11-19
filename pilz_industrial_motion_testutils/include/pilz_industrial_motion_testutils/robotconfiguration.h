@@ -26,7 +26,6 @@
 
 namespace pilz_industrial_motion_testutils
 {
-
 /**
  * @brief Class to define robot configuration in space.
  */
@@ -37,8 +36,7 @@ public:
 
   RobotConfiguration(const std::string& group_name);
 
-  RobotConfiguration(const std::string& group_name,
-                     const moveit::core::RobotModelConstPtr& robot_model);
+  RobotConfiguration(const std::string& group_name, const moveit::core::RobotModelConstPtr& robot_model);
 
 public:
   void setRobotModel(moveit::core::RobotModelConstPtr robot_model);
@@ -49,7 +47,6 @@ public:
 protected:
   std::string group_name_;
   moveit::core::RobotModelConstPtr robot_model_;
-
 };
 
 inline void RobotConfiguration::setRobotModel(moveit::core::RobotModelConstPtr robot_model)
@@ -72,6 +69,6 @@ inline void RobotConfiguration::clearModel()
   robot_model_ = nullptr;
 }
 
-}
+}  // namespace pilz_industrial_motion_testutils
 
-#endif // ROBOTCONFIGURATION_H
+#endif  // ROBOTCONFIGURATION_H

@@ -23,7 +23,6 @@
 
 namespace pilz_industrial_motion_testutils
 {
-
 /**
  * @brief Data class storing all information regarding a linear command.
  */
@@ -31,13 +30,12 @@ template <class StartType, class GoalType>
 class Lin : public BaseCmd<StartType, GoalType>
 {
 public:
-  Lin()
-    : BaseCmd<StartType, GoalType>()
-  {}
+  Lin() : BaseCmd<StartType, GoalType>()
+  {
+  }
 
 private:
   virtual std::string getPlannerId() const override;
-
 };
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -47,6 +45,6 @@ inline std::string Lin<StartType, GoalType>::getPlannerId() const
   return "LIN";
 }
 
-}
+}  // namespace pilz_industrial_motion_testutils
 
-#endif // LIN_H
+#endif  // LIN_H

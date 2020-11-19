@@ -19,8 +19,8 @@
 
 #include <gmock/gmock.h>
 
-#include <ros/console.h>
 #include "ros/console_impl.h"
+#include <ros/console.h>
 
 #include "log4cxx/appenderskeleton.h"
 #include "log4cxx/level.h"
@@ -43,7 +43,8 @@ public:
   }
 
 public:
-  // Indirection via "internal_append" needed to avoid "override" warning message from compiler
+  // Indirection via "internal_append" needed to avoid "override" warning
+  // message from compiler
   void append(const log4cxx::spi::LoggingEventPtr& a, log4cxx::helpers::Pool& b) override
   {
     internal_append(a, b);

@@ -30,7 +30,8 @@ static constexpr int WAITING_TIME_S{ 1 };
 static constexpr int DEFAULT_QUEUE_SIZE{ 1 };
 
 /**
- * @brief Tests that an asynchronous call to waitForMessage waits until someone publishes on the topic.
+ * @brief Tests that an asynchronous call to waitForMessage waits until someone
+ * publishes on the topic.
  */
 TEST(WaitForMessageTests, testAsyncCall)
 {

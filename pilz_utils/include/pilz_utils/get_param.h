@@ -17,9 +17,9 @@
 #ifndef PILZ_UTILS_GET_PARAM_H
 #define PILZ_UTILS_GET_PARAM_H
 
-#include <string>
-#include <stdexcept>
 #include <sstream>
+#include <stdexcept>
+#include <string>
 
 #include <ros/ros.h>
 

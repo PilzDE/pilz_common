@@ -22,15 +22,14 @@
 
 namespace pilz_industrial_motion_testutils
 {
-
-class TestDataLoaderReadingException: public std::runtime_error
+class TestDataLoaderReadingException : public std::runtime_error
 {
-  public:
-    TestDataLoaderReadingException(const std::string error_desc)
-      : std::runtime_error(error_desc)
-    {}
+public:
+  TestDataLoaderReadingException(const std::string error_desc) : std::runtime_error(error_desc)
+  {
+  }
 };
 
-}
+}  // namespace pilz_industrial_motion_testutils
 
-#endif // EXCEPTION_TYPES_H
+#endif  // EXCEPTION_TYPES_H

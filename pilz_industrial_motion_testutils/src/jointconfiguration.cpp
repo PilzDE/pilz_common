@@ -20,24 +20,21 @@
 
 namespace pilz_industrial_motion_testutils
 {
-
-JointConfiguration::JointConfiguration()
-  : RobotConfiguration()
-{}
+JointConfiguration::JointConfiguration() : RobotConfiguration()
+{
+}
 
 JointConfiguration::JointConfiguration(const std::string& group_name,
                                        const std::vector<double>& config,
                                        CreateJointNameFunc&& create_joint_name_func)
-  : RobotConfiguration(group_name)
-  , joints_(config)
-  , create_joint_name_func_(create_joint_name_func)
-{}
+  : RobotConfiguration(group_name), joints_(config), create_joint_name_func_(create_joint_name_func)
+{
+}
 
 JointConfiguration::JointConfiguration(const std::string& group_name,
                                        const std::vector<double>& config,
                                        const moveit::core::RobotModelConstPtr& robot_model)
-  : RobotConfiguration(group_name, robot_model)
-  , joints_(config)
+  : RobotConfiguration(group_name, robot_model), joints_(config)
 {
 }
 
@@ -50,7 +47,7 @@ moveit_msgs::Constraints JointConfiguration::toGoalConstraintsWithoutModel() con
 
   moveit_msgs::Constraints gc;
 
-  for(size_t i = 0; i < joints_.size(); ++i)
+  for (size_t i = 0; i < joints_.size(); ++i)
   {
     moveit_msgs::JointConstraint jc;
     jc.joint_name = create_joint_name_func_(i);
@@ -72,8 +69,7 @@ moveit_msgs::Constraints JointConfiguration::toGoalConstraintsWithModel() const
   state.setToDefaultValues();
   state.setJointGroupPositions(group_name_, joints_);
 
-  return kinematic_constraints::constructGoalConstraints(state,
-                                                         state.getRobotModel()->getJointModelGroup(group_name_));
+  return kinematic_constraints::constructGoalConstraints(state, state.getRobotModel()->getJointModelGroup(group_name_));
 }
 
 moveit_msgs::RobotState JointConfiguration::toMoveitMsgsRobotStateWithoutModel() const
@@ -86,7 +82,7 @@ moveit_msgs::RobotState JointConfiguration::toMoveitMsgsRobotStateWithoutModel()
   moveit_msgs::RobotState robot_state;
   for (size_t i = 0; i < joints_.size(); ++i)
   {
-    robot_state.joint_state.name.emplace_back( create_joint_name_func_(i) );
+    robot_state.joint_state.name.emplace_back(create_joint_name_func_(i));
     robot_state.joint_state.position.push_back(joints_.at(i));
   }
   return robot_state;
@@ -123,20 +119,20 @@ sensor_msgs::JointState JointConfiguration::toSensorMsg() const
   sensor_msgs::JointState state;
   for (size_t i = 0; i < joints_.size(); ++i)
   {
-    state.name.emplace_back( create_joint_name_func_(i) );
+    state.name.emplace_back(create_joint_name_func_(i));
     state.position.push_back(joints_.at(i));
   }
   return state;
 }
 
-std::ostream& operator<< (std::ostream& os, const JointConfiguration& obj)
+std::ostream& operator<<(std::ostream& os, const JointConfiguration& obj)
 {
-  const size_t n {obj.size()};
+  const size_t n{ obj.size() };
   os << "JointConfiguration: [";
-  for(size_t i = 0; i<n; ++i)
+  for (size_t i = 0; i < n; ++i)
   {
     os << obj.getJoint(i);
-    if (i != n-1 )
+    if (i != n - 1)
     {
       os << ", ";
     }
@@ -146,4 +142,4 @@ std::ostream& operator<< (std::ostream& os, const JointConfiguration& obj)
   return os;
 }
 
-} // namespace pilz_industrial_motion_testutils
+}  // namespace pilz_industrial_motion_testutils

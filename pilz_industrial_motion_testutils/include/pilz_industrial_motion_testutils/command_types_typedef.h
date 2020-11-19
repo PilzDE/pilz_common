@@ -29,7 +29,6 @@
 
 namespace pilz_industrial_motion_testutils
 {
-
 typedef Ptp<JointConfiguration, JointConfiguration> PtpJoint;
 typedef Ptp<JointConfiguration, CartesianConfiguration> PtpJointCart;
 typedef Ptp<CartesianConfiguration, CartesianConfiguration> PtpCart;
@@ -44,13 +43,18 @@ typedef Circ<CartesianConfiguration, CartesianInterim, CartesianConfiguration> C
 typedef Circ<JointConfiguration, CartesianCenter, JointConfiguration> CircJointCenterCart;
 typedef Circ<JointConfiguration, CartesianInterim, JointConfiguration> CircJointInterimCart;
 
-typedef boost::variant<
-PtpJoint, PtpJointCart, PtpCart,
-LinJoint, LinCart,
-CircCenterCart, CircInterimCart,
-CircJointCenterCart, CircJointInterimCart,
-Gripper> CmdVariant;
+typedef boost::variant<PtpJoint,
+                       PtpJointCart,
+                       PtpCart,
+                       LinJoint,
+                       LinCart,
+                       CircCenterCart,
+                       CircInterimCart,
+                       CircJointCenterCart,
+                       CircJointInterimCart,
+                       Gripper>
+    CmdVariant;
 
-}
+}  // namespace pilz_industrial_motion_testutils
 
-#endif // COMMAND_TYPES_TYPEDEF_H
+#endif  // COMMAND_TYPES_TYPEDEF_H

@@ -22,17 +22,16 @@
 
 namespace pilz_industrial_motion_testutils
 {
-
 ::testing::AssertionResult isAtExpectedPosition(const robot_state::RobotState& expected,
                                                 const robot_state::RobotState& actual,
                                                 const double epsilon)
 {
-  if(expected.getVariableCount() != actual.getVariableCount())
+  if (expected.getVariableCount() != actual.getVariableCount())
   {
     return ::testing::AssertionFailure() << "Both states have different number of Variables";
   }
 
-  for(size_t i = 0; i < actual.getVariableCount(); ++i)
+  for (size_t i = 0; i < actual.getVariableCount(); ++i)
   {
     // PLEASE NOTE: This comparision only works for reasonably
     // values. That means: Values are not to large, values are
@@ -40,8 +39,8 @@ namespace pilz_industrial_motion_testutils
     if (std::fabs(expected.getVariablePosition(i) - actual.getVariablePosition(i)) > epsilon)
     {
       std::stringstream msg;
-      msg << expected.getVariableNames().at(i) << " position - expected: "
-          << expected.getVariablePosition(i) << " actual: " << actual.getVariablePosition(i);
+      msg << expected.getVariableNames().at(i) << " position - expected: " << expected.getVariablePosition(i)
+          << " actual: " << actual.getVariablePosition(i);
 
       return ::testing::AssertionFailure() << msg.str();
     }
@@ -50,6 +49,6 @@ namespace pilz_industrial_motion_testutils
   return ::testing::AssertionSuccess();
 }
 
-}
+}  // namespace pilz_industrial_motion_testutils
 
-#endif // CENTERAUXILIARY_H
+#endif  // CENTERAUXILIARY_H

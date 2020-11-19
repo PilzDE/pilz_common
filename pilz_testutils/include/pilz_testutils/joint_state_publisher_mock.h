@@ -31,7 +31,8 @@
 namespace pilz_testutils
 {
 /**
- * @brief Mocks the joint_states interface. Can simulate robot movement by changing the position of the first joint in
+ * @brief Mocks the joint_states interface. Can simulate robot movement by
+ * changing the position of the first joint in
  * \c controller_joint_names.
  */
 class JointStatePublisherMock

@@ -20,31 +20,25 @@
 
 namespace pilz_industrial_motion_testutils
 {
-
-RobotConfiguration::RobotConfiguration()
-  : RobotStateMsgConvertible()
-  , GoalConstraintMsgConvertible()
-{}
+RobotConfiguration::RobotConfiguration() : RobotStateMsgConvertible(), GoalConstraintMsgConvertible()
+{
+}
 
 RobotConfiguration::RobotConfiguration(const std::string& group_name)
-  : RobotStateMsgConvertible()
-  , GoalConstraintMsgConvertible()
-  , group_name_(group_name)
-{}
+  : RobotStateMsgConvertible(), GoalConstraintMsgConvertible(), group_name_(group_name)
+{
+}
 
 RobotConfiguration::RobotConfiguration(const std::string& group_name,
                                        const moveit::core::RobotModelConstPtr& robot_model)
-  : RobotStateMsgConvertible()
-  , GoalConstraintMsgConvertible()
-  , group_name_(group_name)
-  , robot_model_(robot_model)
+  : RobotStateMsgConvertible(), GoalConstraintMsgConvertible(), group_name_(group_name), robot_model_(robot_model)
 {
   if (robot_model && (!robot_model_->hasJointModelGroup(group_name_)))
   {
-    std::string msg {"Specified robot model does not contain specified group \""};
+    std::string msg{ "Specified robot model does not contain specified group \"" };
     msg.append(group_name).append("\"");
     throw std::invalid_argument(msg);
   }
 }
 
-} // namespace pilz_industrial_motion_testutils
+}  // namespace pilz_industrial_motion_testutils
