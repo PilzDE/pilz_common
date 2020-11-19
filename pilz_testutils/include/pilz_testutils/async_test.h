@@ -17,10 +17,10 @@
 #ifndef ASYNC_TEST_H
 #define ASYNC_TEST_H
 
-#include <mutex>
-#include <condition_variable>
 #include <algorithm>
 #include <chrono>
+#include <condition_variable>
+#include <mutex>
 #include <string>
 
 #include <gmock/gmock.h>
@@ -32,12 +32,15 @@ namespace testing
 /**
  * @brief Test class that allows the handling of asynchronous test objects
  *
- * The class provides the two basic functions AsyncTest::barricade and AsyncTest::triggerClearEvent.
- * During the test setup gates between the steps with one or more clear events. Allow passing on by calling
+ * The class provides the two basic functions AsyncTest::barricade and
+ * AsyncTest::triggerClearEvent.
+ * During the test setup gates between the steps with one or more clear events.
+ * Allow passing on by calling
  * triggerClearEvent after a test.
  *
  * \e Usage:<br>
- * Suppose you want to test a function that calls another function asynchronously, like the following example:
+ * Suppose you want to test a function that calls another function
+ * asynchronously, like the following example:
  *
  * \code
  * void asyncCall(std::function<void()> fun)
@@ -47,7 +50,8 @@ namespace testing
  * }
  * \endcode
  *
- * You expect that fun gets called, so your test thread has to wait for the completion, else it would fail. This can be
+ * You expect that fun gets called, so your test thread has to wait for the
+ * completion, else it would fail. This can be
  * achieved via:
  *
  * \code
@@ -59,10 +63,12 @@ namespace testing
  *
  * TEST_F(MyTest, testCase)
  * {
- *     EXPECT_CALL(*this, myMethod()).Times(1).WillOnce(ACTION_OPEN_BARRIER_VOID("myMethod"));
+ *     EXPECT_CALL(*this,
+ * myMethod()).Times(1).WillOnce(ACTION_OPEN_BARRIER_VOID("myMethod"));
  *     const int timeout_ms {100};
  *     asyncCall(std::bind(&MyTest::myMethod, this));
- *     BARRIER("myMethod", timeout_ms) << "Timed-out waiting for myMethod call.";
+ *     BARRIER("myMethod", timeout_ms) << "Timed-out waiting for myMethod
+ * call.";
  * }
  * \endcode
  */
@@ -70,15 +76,18 @@ class AsyncTest
 {
 public:
   /**
-   * @brief Triggeres a clear event. If a call to barricade is currently pending it will unblock as soon as all clear
-   * events are triggered. Else the event is put on the waitlist. This waitlist is emptied upon a call to barricade.
+   * @brief Triggeres a clear event. If a call to barricade is currently pending
+   * it will unblock as soon as all clear
+   * events are triggered. Else the event is put on the waitlist. This waitlist
+   * is emptied upon a call to barricade.
    *
    * @param event The event that is triggered
    */
   void triggerClearEvent(const std::string& event);
 
   /**
-   * @brief Will block until the event given by clear_event is triggered or a timeout is reached.
+   * @brief Will block until the event given by clear_event is triggered or a
+   * timeout is reached.
    * Unblocks immediately, if the event was on the waitlist.
    *
    * @param clear_event Event that allows the test to pass on
@@ -88,7 +97,8 @@ public:
   bool barricade(const std::string& clear_event, const int timeout_ms = -1);
 
   /**
-   * @brief Will block until all events given by clear_events are triggered or a timeout is reached.
+   * @brief Will block until all events given by clear_events are triggered or a
+   * timeout is reached.
    * Events on the waitlist are taken into account, too.
    *
    * @param clear_events List of events that allow the test to pass on
@@ -147,7 +157,9 @@ inline bool AsyncTest::barricade(std::initializer_list<std::string> clear_events
   }
   ROS_DEBUG_NAMED("Test", "Adding Barricade[%s]", events_stringstream.str().c_str());
 
-  std::copy_if(clear_events.begin(), clear_events.end(), std::inserter(clear_events_, clear_events_.end()),
+  std::copy_if(clear_events.begin(),
+               clear_events.end(),
+               std::inserter(clear_events_, clear_events_.end()),
                [this](std::string event) { return this->waitlist_.count(event) == 0; });
   waitlist_.clear();
 

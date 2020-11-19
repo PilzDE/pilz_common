@@ -34,7 +34,8 @@ bool dummyServiceCallback(std_srvs::EmptyRequest& req, std_srvs::EmptyResponse& 
 }
 
 /**
- * @brief Tests that an asynchronous call to waitForService waits for the service to come up.
+ * @brief Tests that an asynchronous call to waitForService waits for the
+ * service to come up.
  */
 TEST(WaitForServiceTests, testAsyncCall)
 {
