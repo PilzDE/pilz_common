@@ -18,7 +18,6 @@
 
 import rospy
 import threading
-from pilz_robot_programming.robot import RobotMoveFailed
 
 
 def waited_trigger(cv, func):
@@ -28,16 +27,17 @@ def waited_trigger(cv, func):
 
 
 class MoveThread(threading.Thread):
-    def __init__(self, robot, cmd):
+    def __init__(self, robot, cmd, expected_exception):
         threading.Thread.__init__(self)
         self._robot = robot
         self._cmd = cmd
+        self.expected_exception = expected_exception
         self.exception_thrown = False
 
     def run(self):
         rospy.logdebug("Start motion...")
         try:
             self._robot.move(self._cmd)
-        except RobotMoveFailed:
+        except self.expected_exception:
             rospy.logdebug("Caught expected exception.")
             self.exception_thrown = True
