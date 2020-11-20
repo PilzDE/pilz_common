@@ -2,8 +2,8 @@
 Changelog for package pilz_industrial_motion_testutils
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.6.0 (2020-11-20)
+------------------
 * Move to new repo pilz_common
 * Generalize integration_test_utils.py to break cyclic dependency
 * Contributors: Pilz GmbH and Co. KG
