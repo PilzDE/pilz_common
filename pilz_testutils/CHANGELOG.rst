@@ -2,6 +2,11 @@
 Changelog for package pilz_testutils
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Move to new repo pilz_common
+* Contributors: Pilz GmbH and Co. KG
+
 0.5.20 (2020-11-17)
 -------------------
 * Fix include own header before system (#466)
