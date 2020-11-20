@@ -2,8 +2,8 @@
 Changelog for package pilz_msgs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.6.0 (2020-11-20)
+------------------
 * Move to new repo pilz_common
 * Contributors: Pilz GmbH and Co. KG
 
