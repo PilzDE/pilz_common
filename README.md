@@ -6,7 +6,7 @@ This repository contains packages and sources used across different PILZ ROS pac
 Coming Soon!
 
 #### Branching model
-`melodic-devel` is considered to be the active development branch.
+`noetic-devel` is considered to be the active development branch.
 
 ## Package: pilz_industrial_motion_testutils
 Contains helper classes and functions that are used by the tests.
