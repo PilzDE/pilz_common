@@ -13,9 +13,9 @@ jobs:
     strategy:
       matrix:
         env:
-          - {ROS_DISTRO: melodic, ROS_REPO: testing}
-          - {ROS_DISTRO: melodic, ROS_REPO: main}
-    runs-on: ubuntu-18.04
+          - {ROS_DISTRO: noetic, ROS_REPO: testing}
+          - {ROS_DISTRO: noetic, ROS_REPO: main}
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v1
       - uses: 'ros-industrial/industrial_ci@master'
@@ -23,13 +23,13 @@ jobs:
 
   clang-format:
     name: "Clang-format"
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v1
       - uses: 'ros-industrial/industrial_ci@master'
         env:
           ROS_REPO: testing
-          ROS_DISTRO: melodic
+          ROS_DISTRO: noetic
           CLANG_FORMAT_CHECK: file
           CLANG_FORMAT_VERSION: 10
 
@@ -38,13 +38,13 @@ jobs:
     strategy:
       matrix:
         package: [pilz_utils]
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v1
       - uses: 'ros-industrial/industrial_ci@master'
         env:
           ROS_REPO: testing
-          ROS_DISTRO: melodic
+          ROS_DISTRO: noetic
           ADDITIONAL_DEBS: git
           CATKIN_LINT: false
           NOT_TEST_BUILD: true
