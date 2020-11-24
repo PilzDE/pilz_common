@@ -5,6 +5,8 @@ find_package(catkin REQUIRED)
 
 catkin_python_setup()
 
+catkin_package()
+
 install(PROGRAMS
    src/${PROJECT_NAME}/xml_testdata_loader.py
    src/${PROJECT_NAME}/acceptance_test_utils.py
