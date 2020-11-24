@@ -4,9 +4,11 @@
   <version>0.6.0</version>
   <description>The pilz_msgs package</description>
 
-   <maintainer email="a.gutenkunst@pilz.de">Alexander Gutenkunst</maintainer>
+  <maintainer email="a.gutenkunst@pilz.de">Alexander Gutenkunst</maintainer>
+  <maintainer email="c.doehn@pilz.de">Christian Doehn</maintainer>
   <maintainer email="c.henkel@pilz.de">Christian Henkel</maintainer>
   <maintainer email="i.martini@pilz.de">Immanuel Martini</maintainer>
+  <maintainer email="r.feistenauer@pilz.de">Richard Feistenauer</maintainer>
 
   <license>Apache 2.0</license>
 
@@ -17,9 +19,7 @@
   <buildtool_depend>catkin</buildtool_depend>
 
   <build_depend>message_generation</build_depend>
-  <build_depend>moveit_msgs</build_depend>
 
   <run_depend>message_runtime</run_depend>
-  <run_depend>moveit_msgs</run_depend>
 
 </package>
