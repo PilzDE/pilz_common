@@ -2,6 +2,11 @@
 Changelog for package pilz_utils
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Update maintainer list
+* Contributors: Pilz GmbH and Co. KG
+
 0.6.0 (2020-11-20)
 ------------------
 * Move to new repo pilz_common
