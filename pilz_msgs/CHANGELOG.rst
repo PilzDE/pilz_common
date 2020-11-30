@@ -2,8 +2,8 @@
 Changelog for package pilz_msgs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.7.0 (2020-11-30)
+------------------
 * Remove msgs which have been moved to moveit for noetic
 * Update maintainer list
 * Contributors: Pilz GmbH and Co. KG
