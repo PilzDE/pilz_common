@@ -82,12 +82,15 @@ GENERATE_LOGMESSAGE_MATCHER_P(FATAL)
 
 }  // namespace pilz_testutils
 
-namespace log4cxx::spi
+namespace log4cxx
+{
+namespace spi
 {
 void PrintTo(const LoggingEventPtr& logging_event, std::ostream* os)
 {
   *os << logging_event->getLevel()->toString() << " \"" << logging_event->getMessage() << "\"";
 }
-}  // namespace log4cxx::spi
+}  // namespace spi
+}  // namespace log4cxx
 
 #endif  // MOCK_APPENDER_H
