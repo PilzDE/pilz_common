@@ -34,7 +34,7 @@ if(CATKIN_ENABLE_CLANG_TIDY)
     message(FATAL_ERROR "clang-tidy not found.")
   else()
     message(STATUS "clang-tidy found: ${CLANG_TIDY_EXE}")
-    set(CMAKE_CXX_CLANG_TIDY "${CLANG_TIDY_EXE}")
+    set(CMAKE_CXX_CLANG_TIDY "${CLANG_TIDY_EXE}" "-header-filter=.*")
   endif()
 endif()
 
@@ -46,6 +46,7 @@ endif()
 ## Your package locations should be listed before other locations
 include_directories(
   include
+  SYSTEM
   ${catkin_INCLUDE_DIRS}
 )
 
@@ -73,3 +74,18 @@ PATTERN ".svn" EXCLUDE
 install(TARGETS ${PROJECT_NAME}
    LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 )
+
+############
+##  Test  ##
+############
+if(CATKIN_ENABLE_TESTING)
+
+  add_executable(compile_test
+    test/compile_test.cpp
+    src/joint_state_publisher_mock.cpp
+  )
+  target_link_libraries(compile_test
+    ${catkin_LIBRARIES}
+  )
+
+endif()

@@ -38,7 +38,7 @@ namespace pilz_testutils
 class MockAppender : public log4cxx::AppenderSkeleton
 {
 public:
-  ~MockAppender()
+  ~MockAppender() override
   {
   }
 
