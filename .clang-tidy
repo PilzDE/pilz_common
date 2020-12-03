@@ -30,7 +30,7 @@ WarningsAsErrors: '
                   readability-identifier-naming,
                   '
 
-HeaderFilterRegex: ''
+HeaderFilterRegex: '.*'
 AnalyzeTemporaryDtors: false
 CheckOptions:
   - key:             llvm-namespace-comment.ShortNamespaceLines

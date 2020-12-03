@@ -35,7 +35,7 @@ public:
   }
 
 private:
-  virtual std::string getPlannerId() const override;
+  std::string getPlannerId() const override;
 };
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

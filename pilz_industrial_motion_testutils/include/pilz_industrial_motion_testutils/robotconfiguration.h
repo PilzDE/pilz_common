@@ -51,7 +51,7 @@ protected:
 
 inline void RobotConfiguration::setRobotModel(moveit::core::RobotModelConstPtr robot_model)
 {
-  robot_model_ = robot_model;
+  robot_model_ = std::move(robot_model);
 }
 
 inline void RobotConfiguration::setGroupName(const std::string& group_name)

@@ -34,7 +34,7 @@ public:
   virtual ~BaseCmd() = default;
 
 public:
-  virtual planning_interface::MotionPlanRequest toRequest() const override;
+  planning_interface::MotionPlanRequest toRequest() const override;
 
   void setStartConfiguration(StartType start);
   void setGoalConfiguration(GoalType goal);

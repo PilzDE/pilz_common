@@ -34,7 +34,7 @@ if(CATKIN_ENABLE_CLANG_TIDY)
     message(FATAL_ERROR "clang-tidy not found.")
   else()
     message(STATUS "clang-tidy found: ${CLANG_TIDY_EXE}")
-    set(CMAKE_CXX_CLANG_TIDY "${CLANG_TIDY_EXE}" "-header-filter=.*")
+    set(CMAKE_CXX_CLANG_TIDY "${CLANG_TIDY_EXE}")
   endif()
 endif()
 

@@ -38,7 +38,7 @@ class TestdataLoader
 public:
   TestdataLoader() = default;
 
-  TestdataLoader(moveit::core::RobotModelConstPtr robot_model) : robot_model_(robot_model)
+  TestdataLoader(moveit::core::RobotModelConstPtr robot_model) : robot_model_(std::move(robot_model))
   {
   }
 
@@ -89,7 +89,7 @@ protected:
 
 inline void TestdataLoader::setRobotModel(moveit::core::RobotModelConstPtr robot_model)
 {
-  robot_model_ = robot_model;
+  robot_model_ = std::move(robot_model);
 }
 
 using TestdataLoaderUPtr = std::unique_ptr<TestdataLoader>;

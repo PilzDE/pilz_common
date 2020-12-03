@@ -54,8 +54,8 @@ public:
                          const moveit::core::RobotModelConstPtr& robot_model);
 
 public:
-  virtual moveit_msgs::Constraints toGoalConstraints() const override;
-  virtual moveit_msgs::RobotState toMoveitMsgsRobotState() const override;
+  moveit_msgs::Constraints toGoalConstraints() const override;
+  moveit_msgs::RobotState toMoveitMsgsRobotState() const override;
 
   void setLinkName(const std::string& link_name);
   const std::string& getLinkName() const;
@@ -95,7 +95,7 @@ private:
   boost::optional<JointConfiguration> seed_{ boost::none };
 };
 
-std::ostream& operator<<(std::ostream&, const CartesianConfiguration&);
+std::ostream& operator<<(std::ostream& /*os*/, const CartesianConfiguration& /*cartesian_configuration*/);
 
 inline void CartesianConfiguration::setLinkName(const std::string& link_name)
 {

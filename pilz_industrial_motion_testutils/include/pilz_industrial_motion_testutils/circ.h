@@ -44,7 +44,7 @@ public:
   planning_interface::MotionPlanRequest toRequest() const override;
 
 private:
-  virtual std::string getPlannerId() const override;
+  std::string getPlannerId() const override;
 
 private:
   AuxiliaryType auxiliary_;

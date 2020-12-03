@@ -29,7 +29,7 @@ template <class ConfigType, class BuilderType>
 class Interim : public CircAuxiliary<ConfigType, BuilderType>
 {
 private:
-  virtual std::string getConstraintName() const override;
+  std::string getConstraintName() const override;
 };
 
 template <class ConfigType, class BuilderType>
