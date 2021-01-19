@@ -73,3 +73,33 @@ PATTERN ".svn" EXCLUDE
 install(TARGETS ${PROJECT_NAME}
    LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 )
+
+#############
+## Testing ##
+#############
+if(CATKIN_ENABLE_TESTING)
+
+  if(ENABLE_COVERAGE_TESTING)
+    find_package(code_coverage REQUIRED)
+    APPEND_COVERAGE_COMPILER_FLAGS()
+  endif()
+
+  catkin_add_gmock(unittest_service_client_mock
+  test/unittest_service_client_mock.cpp
+  )
+  target_link_libraries(unittest_service_client_mock
+    ${catkin_LIBRARIES}
+  )
+
+  # to run:
+  #   catkin_make -DENABLE_COVERAGE_TESTING=ON package_name
+  #   catkin_make -DENABLE_COVERAGE_TESTING=ON package_name_coverage (adding -j1 recommended)
+  if(ENABLE_COVERAGE_TESTING)
+    set(COVERAGE_EXCLUDES "*/${PROJECT_NAME}/test*")
+    add_code_coverage(
+      NAME ${PROJECT_NAME}_coverage
+      # specifying dependencies in a reliable way is on open issue
+      # see https://github.com/mikeferguson/code_coverage/pull/14
+    )
+  endif()
+endif()
