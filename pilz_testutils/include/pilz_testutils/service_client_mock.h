@@ -23,6 +23,8 @@
 
 #include <gmock/gmock.h>
 
+#include <ros/console.h>
+
 namespace pilz_testutils
 {
 /**
