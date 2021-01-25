@@ -23,13 +23,7 @@
 
 namespace pilz_testutils
 {
-class SeviceClientMockTest : public testing::Test
-{
-public:
-  MOCK_METHOD0(myMethod, void());
-};
-
-TEST_F(SeviceClientMockTest, defaultBehaviour)
+TEST(SeviceClientMockTest, defaultBehaviour)
 {
   ServiceClientMockFactory<std::string> srv_client_mock_factory;
 
@@ -39,7 +33,7 @@ TEST_F(SeviceClientMockTest, defaultBehaviour)
   service.call(resp);
 }
 
-TEST_F(SeviceClientMockTest, negationOnService)
+TEST(SeviceClientMockTest, negationOnService)
 {
   ServiceClientMockFactory<std::string> srv_client_mock_factory;
   auto service = srv_client_mock_factory.create("service_name", false);  // <- Whatever the second param does

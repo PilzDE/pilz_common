@@ -25,8 +25,6 @@ namespace pilz_testutils
 {
 class LoggerMockTest : public testing::Test, public testing::AsyncTest
 {
-public:
-  MOCK_METHOD0(myMethod, void());
 };
 
 TEST_F(LoggerMockTest, defaultBehaviour)
