@@ -84,6 +84,13 @@ if(CATKIN_ENABLE_TESTING)
     APPEND_COVERAGE_COMPILER_FLAGS()
   endif()
 
+  catkin_add_gmock(unittest_async_test
+    test/unittest_async_test.cpp
+  )
+  target_link_libraries(unittest_async_test
+    ${catkin_LIBRARIES}
+  )
+
   catkin_add_gmock(unittest_logger_mock
   test/unittest_logger_mock.cpp
   )
@@ -91,10 +98,10 @@ if(CATKIN_ENABLE_TESTING)
     ${catkin_LIBRARIES}
   )
 
-  catkin_add_gmock(unittest_async_test
-    test/unittest_async_test.cpp
+  catkin_add_gmock(unittest_service_client_mock
+  test/unittest_service_client_mock.cpp
   )
-  target_link_libraries(unittest_async_test
+  target_link_libraries(unittest_service_client_mock
     ${catkin_LIBRARIES}
   )
 
