@@ -21,4 +21,6 @@
   <build_depend>roscpp</build_depend>
   <build_depend>pilz_utils</build_depend>
   <build_depend>sensor_msgs</build_depend>
+
+  <test_depend>code_coverage</test_depend>
 </package>
