@@ -78,6 +78,7 @@ install(TARGETS ${PROJECT_NAME}
 ## Testing ##
 #############
 if(CATKIN_ENABLE_TESTING)
+  find_package(rostest REQUIRED)
 
   if(ENABLE_COVERAGE_TESTING)
     find_package(code_coverage REQUIRED)
