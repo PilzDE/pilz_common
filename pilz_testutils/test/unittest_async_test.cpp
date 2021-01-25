@@ -22,7 +22,7 @@
 
 namespace pilz_testutils
 {
-void asyncCall(std::function<void()> fun)
+void asyncCall(const std::function<void()>& fun)
 {
   std::thread t(fun);
   t.detach();
