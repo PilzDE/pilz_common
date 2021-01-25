@@ -43,6 +43,11 @@ class JointStatePublisherMock
 public:
   JointStatePublisherMock();
 
+  ~JointStatePublisherMock();
+
+  JointStatePublisherMock(const JointStatePublisherMock& other) = delete;
+  JointStatePublisherMock& operator=(const JointStatePublisherMock& other) = delete;
+
   void startPublishingAsync(const double& joint1_start_position = 0.0);
 
   void setJoint1Velocity(const double& vel);

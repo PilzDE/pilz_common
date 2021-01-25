@@ -91,6 +91,13 @@ if(CATKIN_ENABLE_TESTING)
     ${catkin_LIBRARIES}
   )
 
+  catkin_add_gmock(unittest_async_test
+    test/unittest_async_test.cpp
+  )
+  target_link_libraries(unittest_async_test
+    ${catkin_LIBRARIES}
+  )
+
   # to run:
   #   catkin_make -DENABLE_COVERAGE_TESTING=ON package_name
   #   catkin_make -DENABLE_COVERAGE_TESTING=ON package_name_coverage (adding -j1 recommended)
