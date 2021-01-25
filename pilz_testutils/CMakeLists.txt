@@ -105,6 +105,15 @@ if(CATKIN_ENABLE_TESTING)
     ${catkin_LIBRARIES}
   )
 
+  add_rostest_gmock(unittest_joint_state_publisher_mock
+    test/unittest_joint_state_publisher_mock.test
+    test/unittest_joint_state_publisher_mock.cpp
+  )
+  target_link_libraries(unittest_joint_state_publisher_mock
+    ${PROJECT_NAME}
+    ${catkin_LIBRARIES}
+  )
+
   # to run:
   #   catkin_make -DENABLE_COVERAGE_TESTING=ON package_name
   #   catkin_make -DENABLE_COVERAGE_TESTING=ON package_name_coverage (adding -j1 recommended)
