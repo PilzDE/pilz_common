@@ -42,6 +42,11 @@ JointStatePublisherMock::JointStatePublisherMock()
   pub_ = nh_.advertise<JointState>(nh_.getNamespace() + "/" + JOINT_STATES_TOPIC_NAME, JOINT_STATES_QUEUE_SIZE);
 }
 
+JointStatePublisherMock::~JointStatePublisherMock()
+{
+  stopPublishing();
+}
+
 void JointStatePublisherMock::startPublishingAsync(const double& joint1_start_position)
 {
   stop_flag_ = false;

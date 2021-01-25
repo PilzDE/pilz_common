@@ -18,34 +18,25 @@
 
 #include <gmock/gmock.h>
 
-#include <pilz_testutils/service_client_mock.h>
-#include <std_srvs/Trigger.h>
+#include <pilz_testutils/async_test.h>
+#include <pilz_testutils/logger_mock.h>
 
 namespace pilz_testutils
 {
-class SeviceClientMockTest : public testing::Test
+class LoggerMockTest : public testing::Test, public testing::AsyncTest
 {
 public:
   MOCK_METHOD0(myMethod, void());
 };
 
-TEST_F(SeviceClientMockTest, defaultBehaviour)
+TEST_F(LoggerMockTest, defaultBehaviour)
 {
-  ServiceClientMockFactory<std::string> srv_client_mock_factory;
+  pilz_testutils::LoggerMock ros_log_mock;
 
-  auto service = srv_client_mock_factory.create("service_name", false);  // <- Whatever the second param does
-  std::string resp{ "response" };
-  EXPECT_CALL(srv_client_mock_factory, call_named("service_name", resp));
-  service.call(resp);
-}
+  EXPECT_LOG(*ros_log_mock, WARN, "Your warning text").WillOnce(ACTION_OPEN_BARRIER_VOID("logger_called_event"));
+  std::async(std::launch::async, []() { ROS_WARN("Your warning text"); });
 
-TEST_F(SeviceClientMockTest, negationOnService)
-{
-  ServiceClientMockFactory<std::string> srv_client_mock_factory;
-  auto service = srv_client_mock_factory.create("service_name", false);  // <- Whatever the second param does
-
-  EXPECT_CALL(srv_client_mock_factory, handle_invalid_named("service_name")).WillOnce(::testing::Return(false));
-  EXPECT_FALSE(!service);
+  BARRIER("logger_called_event");  // Wait till log message is received
 }
 
 }  // namespace pilz_testutils
