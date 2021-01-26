@@ -18,7 +18,7 @@
 
 # Asks the user permission to start the test.
 def _askPermission(test_name):
-    s = raw_input('Perform ' + test_name + ' [(y)es, (n)o]?: ')
+    s = input('Perform ' + test_name + ' [(y)es, (n)o]?: ')
     if(s == "n"):
         print('\n\nSkip ' + test_name + '\n___TEST-END___\n')
         return 0
@@ -32,7 +32,7 @@ def _askSuccess(test_name, question=None):
         print('\nTest ' + test_name + ' successful?')
         print('Hint: \n' + question)
 
-    s = raw_input('Test ' + test_name + ' successful [(y)es, (n)o]?: ')
+    s = input('Test ' + test_name + ' successful [(y)es, (n)o]?: ')
     if(s == "n"):
         print('\nTest ' + test_name + ' failed!\n___TEST-END___\n')
         return 0
