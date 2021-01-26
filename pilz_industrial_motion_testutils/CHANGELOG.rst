@@ -2,6 +2,11 @@
 Changelog for package pilz_industrial_motion_testutils
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fix acceptance-test utils (python3)
+* Contributors: Pilz GmbH and Co. KG
+
 0.7.0 (2020-11-30)
 ------------------
 * Remove cpp testutils (moved to moveit in noetic)

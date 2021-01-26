@@ -2,6 +2,12 @@
 Changelog for package pilz_testutils
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add unittests
+* Minor fixes
+* Contributors: Pilz GmbH and Co. KG
+
 0.7.0 (2020-11-30)
 ------------------
 * Update maintainer list
