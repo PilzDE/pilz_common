@@ -34,7 +34,7 @@ TEST_F(LoggerMockTest, defaultBehaviour)
   EXPECT_LOG(*ros_log_mock, WARN, "Your warning text").WillOnce(ACTION_OPEN_BARRIER_VOID("logger_called_event"));
   std::async(std::launch::async, []() { ROS_WARN("Your warning text"); });
 
-  BARRIER("logger_called_event");  // Wait till log message is received
+  BARRIER("logger_called_event", 100 /*ms timeout*/);  // Wait till log message is received
 }
 
 }  // namespace pilz_testutils
