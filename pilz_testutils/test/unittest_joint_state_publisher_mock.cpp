@@ -127,7 +127,7 @@ TEST_F(JointStatePublisherMockTest, nextMessageOnStoppedRobot)
 
   auto next_message = publisher_mock.getNextMessage();
 
-  EXPECT_EQ(next_message->position[0], 0.4);
+  EXPECT_DOUBLE_EQ(next_message->position[0], 0.4);
 
   publisher_mock.stopPublishing();
 }
