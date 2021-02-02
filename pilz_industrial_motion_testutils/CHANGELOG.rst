@@ -2,8 +2,8 @@
 Changelog for package pilz_industrial_motion_testutils
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.7.1 (2021-02-02)
+------------------
 * Fixes acceptance test utils for python 3
 * Contributors: Pilz GmbH and Co. KG
 
