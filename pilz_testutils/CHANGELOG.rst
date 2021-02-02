@@ -4,6 +4,12 @@ Changelog for package pilz_testutils
 
 Forthcoming
 -----------
+* Add missing header in service_client_mock.h
+* JointStatePublisherMock stop publishing in DTOR
+* Fix minor clang-tidy finding
+* Omit nested namespace definitions (c++17)
+* Contributors: Pilz GmbH and Co. KG
+
 * Add unittests
 * Minor fixes
 * Contributors: Pilz GmbH and Co. KG
