@@ -59,7 +59,10 @@ TEST_F(JointStatePublisherMockTest, defaultBehaviour)
   JointStatePublisherMock publisher_mock;
   publisher_mock.startPublishingAsync();
 
-  pilz_utils::waitForMessage<sensor_msgs::JointState>("/joint_states");
+  auto res = ros::topic::waitForMessage<sensor_msgs::JointState>("/joint_states", ros::Duration(1 /*sec*/));
+
+  EXPECT_NE(res, nullptr) << "Timeout while waiting for expected message.";
+
   publisher_mock.stopPublishing();
 }
 
@@ -123,7 +126,9 @@ TEST_F(JointStatePublisherMockTest, nextMessageOnStoppedRobot)
   JointStatePublisherMock publisher_mock;
 
   publisher_mock.startPublishingAsync(0.4 /*start_position_joint1 */);  // start outside limit
-  pilz_utils::waitForMessage<sensor_msgs::JointState>("/joint_states");
+  auto res = ros::topic::waitForMessage<sensor_msgs::JointState>("/joint_states", ros::Duration(1 /*sec*/));
+
+  ASSERT_NE(res, nullptr) << "Timeout while waiting for expected message.";
 
   auto next_message = publisher_mock.getNextMessage();
 
