@@ -2,6 +2,12 @@
 Changelog for package pilz_testutils
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add pilz_testutils_coverage to CI job
+* Add unittest for joint_state_publisher_mock
+* Contributors: Pilz GmbH and Co. KG
+
 0.7.1 (2021-02-02)
 ------------------
 * Add missing header in service_client_mock.h
