@@ -17,7 +17,7 @@
 # limitations under the License.
 
 # Asks the user permission to start the test.
-def _askPermission(test_name):
+def askPermission(test_name):
     s = input('Perform ' + test_name + ' [(y)es, (n)o]?: ')
     if(s == "n"):
         print('\n\nSkip ' + test_name + '\n___TEST-END___\n')
@@ -27,7 +27,7 @@ def _askPermission(test_name):
 
 # Asks the user if the test was successful and (if given) displays
 # a hint regarding the assessment of a successful test.
-def _askSuccess(test_name, question=None):
+def askSuccess(test_name, question=None):
     if (question != None):
         print('\nTest ' + test_name + ' successful?')
         print('Hint: \n' + question)
