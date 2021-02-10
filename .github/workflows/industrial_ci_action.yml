@@ -37,7 +37,7 @@ jobs:
     name: "Coverage check"
     strategy:
       matrix:
-        package: [pilz_utils]
+        package: [pilz_utils, pilz_testutils]
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v1
