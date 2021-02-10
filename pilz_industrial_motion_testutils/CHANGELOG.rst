@@ -2,8 +2,8 @@
 Changelog for package pilz_industrial_motion_testutils
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.7.2 (2021-02-10)
+------------------
 * Make accpetance-test utils public
 * Contributors: Pilz GmbH and Co. KG
 

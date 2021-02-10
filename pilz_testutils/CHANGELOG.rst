@@ -2,8 +2,8 @@
 Changelog for package pilz_testutils
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.7.2 (2021-02-10)
+------------------
 * Add pilz_testutils_coverage to CI job
 * Add unittest for joint_state_publisher_mock
 * Contributors: Pilz GmbH and Co. KG
