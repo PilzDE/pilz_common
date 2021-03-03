@@ -70,21 +70,34 @@ public:
   // LCOV_EXCL_STOP
 };
 
-#define GENERATE_LOGMESSAGE_MATCHER_P(level)                                                                           \
-  MATCHER_P(Is##level, msg, std::string(#level " \"") + msg + "\"")                                                    \
-  {                                                                                                                    \
-    return arg->getLevel()->toInt() == log4cxx::Level::level##_INT && std::string(msg) == arg->getMessage();           \
-  }
+constexpr bool str_eq(char const* str1, char const* str2)
+{
+  return *str1 == *str2 && (*str1 == '\0' || str_eq(str1 + 1, str2 + 1));
+}
 
-GENERATE_LOGMESSAGE_MATCHER_P(DEBUG)
-GENERATE_LOGMESSAGE_MATCHER_P(INFO)
-GENERATE_LOGMESSAGE_MATCHER_P(WARN)
-GENERATE_LOGMESSAGE_MATCHER_P(ERROR)
-GENERATE_LOGMESSAGE_MATCHER_P(FATAL)
+// The ASSERT_VALID_LEVEL avoids accidentally defaulting of log4cxx::Level::toLevel() to DEBUG due to missspelled level
+#define ASSERT_VALID_LEVEL(level)                                                                                      \
+  static_assert(pilz_testutils::str_eq(#level, "DEBUG") || pilz_testutils::str_eq(#level, "INFO") ||                   \
+                    pilz_testutils::str_eq(#level, "WARN") || pilz_testutils::str_eq(#level, "ERROR") ||               \
+                    pilz_testutils::str_eq(#level, "FATAL"),                                                           \
+                "\"" #level "\" is not a valid log level");
+
+MATCHER_P(IsLevel, level, std::string("Level is: ") + level->toString())
+{
+  return arg->getLevel() == level;
+}
+
+MATCHER_P(IsMessage, msg, std::string("Message is: ") + msg)
+{
+  return arg->getMessage() == msg;
+}
 
 #define EXPECT_LOG(logger, level, msg)                                                                                 \
-  EXPECT_EQ((logger).getName(), "MockAppender");                                                                       \
-  EXPECT_CALL(logger, internal_append(Is##level(msg), ::testing::_))
+  ASSERT_VALID_LEVEL(level)                                                                                            \
+  EXPECT_CALL(logger,                                                                                                  \
+              internal_append(::testing::AllOf(pilz_testutils::IsLevel(log4cxx::Level::toLevel(#level)),               \
+                                               pilz_testutils::IsMessage(msg)),                                        \
+                              ::testing::_))
 
 }  // namespace pilz_testutils
 
